@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+接机登记{% endblock title %}
+
+
+  {% block content %}
+<form class="form-horizontal span10" method="post">
+{% csrf_token %}
+
+ <fieldset>
+        {% for field in form.visible_fields %}
+     {% if field.errors %}
+   <div class="control-group error">
+   {% else %}
+   <div class="control-group">
+     {% endif %}
+
+        <label class="control-label" for="{{ field.name}}">{{ field.label}}</label> 
+        <div class="controls">
+            {% if field.name == "depart" %}
+            <div id="id_depart" name="depart" class="input-append date">
+                <input data-format="yyyy-MM-dd hh:mm:ss" type="text" name="depart"/>
+                <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+                </span>
+
+                 <span class="help-inline">{{field.errors}}</span>
+            </div> <!--for time--> 
+        </div>
+                <!--for controls-->    
+             {% elif field.name == "arrive" %}
+                  <div id="id_arrive" name="arrive" class="input-append date">
+                      <input data-format="yyyy-MM-dd hh:mm:ss" type="text" name ="arrive"/>
+                      <span class="add-on">
+                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                      </i>
+                    </span>
+  
+                    <span class="help-inline">{{field.errors}}</span> 
+                  </div><!--for time-->
+               </div>
+                <!--for controls-->  
+
+            {% else%}
+       {{field}}
+       <span class="help-inline">{{field.errors}}</span>
+     </div><!--for controls--> 
+        
+            
+             {%endif%}
+         
+    </div><!--for control group-->         
+           
+        {% endfor %}
+
+       </fieldset>
+
+
+
+       <div class="form-actions">
+            <button type="submit" class="btn btn-primary">提交</button>
+          </div>
+</form>
+
+
+
+    <script type="text/javascript">
+      $(function(){
+
+     $('#id_depart').datetimepicker({
+      language: 'en',
+
+    });
+          
+     $('#id_arrive').datetimepicker({
+      language: 'en',
+
+    });
+  });
+            </script>
+
+
+
+ {% endblock content %}

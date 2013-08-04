@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+登记成功{% endblock title %}
+  {% block content %}
+  <div class="span10">
+<h2>提交信息成功</h2>
+ </div>
+<div class="span5">
+<h4>姓名:{{r.name}}</h4>
+<h4>航空公司:  {{r.flight_company}}</h4>
+<h4>航班号: {{r.flight_no}}</h4>
+<h4>起飞时间: {{r.depart|date:"Y-d-m"}}</h4>
+<h4>到达时间: {{r.arrive|date:"Y-d-m"}}</h4>
+<h4>起飞机场:{{r.depart_airport}}</h4>
+<h4>到达机场:{{r.arrive_airport}}</h4>
+<h4>QQ:{{r.qq}}</h4>
+<h4>邮箱:{{r.email}}</h4>
+<h4>联系电话:{{r.phone}}</h4>
+<h4>行李数:{{r.package}}</h4>
+<h4>是否需要住处:{% if r.need_room %}是{%else%}否{%endif%}</h4>
+<h4>预计找房地点:{{r.expect_district}}</h4>
+</div>
+ {% endblock content %}
